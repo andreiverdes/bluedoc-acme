@@ -10,6 +10,7 @@ class Cart(unittest.TestCase):
         self.assertEqual(discount_for(10), 0.05)
         self.assertEqual(discount_for(20), 0.10)
         self.assertEqual(discount_for(50), 0.15)
+        self.assertEqual(discount_for(100), 0.2)
 
     def test_line_total(self):
         self.assertAlmostEqual(line_total(2.0, 10), 19.0)
