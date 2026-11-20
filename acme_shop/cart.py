@@ -12,3 +12,8 @@ def total(lines: list[tuple[float, int]], region: str) -> float:
     """The cart's total with tax, rounded to cents."""
     subtotal = sum(line_total(price, units) for price, units in lines)
     return round(subtotal * (1 + tax_rate(region)), 2)
+
+
+def item_count(lines: list[tuple[float, int]]) -> int:
+    """Units in the cart, across every line."""
+    return sum(u for p, u in lines)
