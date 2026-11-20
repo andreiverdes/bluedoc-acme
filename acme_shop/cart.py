@@ -16,4 +16,4 @@ def total(lines: list[tuple[float, int]], region: str) -> float:
 
 def item_count(lines: list[tuple[float, int]]) -> int:
     """Units in the cart, across every line."""
-    return sum(u for p, u in lines)
+    return sum(u for _, u in lines)
