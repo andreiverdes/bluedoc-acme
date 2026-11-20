@@ -18,6 +18,7 @@ class Cart(unittest.TestCase):
     def test_total_with_tax(self):
         self.assertEqual(total([(10.0, 1)], "NY"), 10.4)
         self.assertEqual(total([(10.0, 1)], "XX"), 10.0)
+        self.assertEqual(total([(10.0, 1)], "ny"), 10.4)
 
 
 if __name__ == "__main__":
