@@ -20,9 +20,9 @@ CATALOG = [
 
 def search(query: str, max_price: float | None = None, limit: int = 10) -> list[Product]:
     """Products whose name contains the query, cheapest first."""
-    words = query.split()
-    hits = [p for p in CATALOG if all(w in p.name for w in words)]
+    words = [w.casefold() for w in query.split()]
+    hits = [p for p in CATALOG if all(w in p.name.casefold() for w in words)]
     if max_price is not None:
-        hits = [p for p in hits if p.price < max_price]
+        hits = [p for p in hits if p.price <= max_price]
     hits.sort(key=lambda p: p.price)
     return hits[:limit]
