@@ -17,3 +17,16 @@ def total(lines: list[tuple[float, int]], region: str) -> float:
 def item_count(lines: list[tuple[float, int]]) -> int:
     """Units in the cart, across every line."""
     return sum(u for _, u in lines)
+
+
+def set_units(lines: list[tuple[float, int]], index: int, units: int) -> list[tuple[float, int]]:
+    """A copy of the cart with one line's units changed; zero units drops the line."""
+    price, _ = lines[index]
+    if units == 0:
+        return remove_line(lines, index)
+    return lines[:index] + [(price, units)] + lines[index + 1:]
+
+
+def remove_line(lines: list[tuple[float, int]], index: int) -> list[tuple[float, int]]:
+    """A copy of the cart without the line at index."""
+    return lines[:index] + lines[index + 1:]
