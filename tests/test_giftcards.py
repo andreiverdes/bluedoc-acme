@@ -1,6 +1,7 @@
 import unittest
+from datetime import date
 
-from acme_shop.giftcards import GiftCard, redeem
+from acme_shop.giftcards import GiftCard, GiftCardExpired, redeem
 
 
 class GiftCards(unittest.TestCase):
@@ -13,6 +14,12 @@ class GiftCards(unittest.TestCase):
         card = GiftCard("LEO-50", 50.0)
         self.assertEqual(redeem(card, 30.0), 0.0)
         self.assertEqual(card.balance, 20.0)
+
+    def test_expired_card_is_rejected(self):
+        card = GiftCard("MIA-10", 10.0, expires=date(2026, 1, 31))
+        with self.assertRaises(GiftCardExpired):
+            redeem(card, 5.0, today=date(2026, 2, 1))
+        self.assertEqual(card.balance, 10.0)
 
 
 if __name__ == "__main__":
