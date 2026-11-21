@@ -17,4 +17,4 @@ def apply_promo(subtotal: float, code: str | None) -> float:
     kind, amount = promo
     if kind == "percent":
         return subtotal * (1 - amount)
-    return subtotal - amount
+    return max(subtotal - amount, 0.0)
