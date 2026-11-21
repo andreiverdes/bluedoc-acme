@@ -13,6 +13,9 @@ class Shipping(unittest.TestCase):
     def test_two_parcels(self):
         self.assertEqual(shipping_cost([(1.0, 7)]), 12.0)
 
+    def test_empty_cart_ships_free(self):
+        self.assertEqual(shipping_cost([]), 0.0)
+
 
 if __name__ == "__main__":
     unittest.main()
